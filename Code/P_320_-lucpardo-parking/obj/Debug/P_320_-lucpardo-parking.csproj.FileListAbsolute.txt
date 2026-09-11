@@ -1,0 +1,8 @@
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\obj\Debug\P_320_-lucpardo-parking.csproj.AssemblyReference.cache
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\obj\Debug\P_320_-lucpardo-parking.csproj.CoreCompileInputs.cache
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\bin\Debug\P_320_-lucpardo-parking.exe.config
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\bin\Debug\P_320_-lucpardo-parking.exe
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\bin\Debug\P_320_-lucpardo-parking.pdb
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\obj\Debug\P_320_-lucpardo-parking.exe
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\obj\Debug\P_320_-lucpardo-parking.pdb
+D:\2ème année\1er trimestre\I320-ACD\projet\I320-Projet\Code\P_320_-lucpardo-parking\obj\Debug\P_320_-lucpardo-parking.exe.config

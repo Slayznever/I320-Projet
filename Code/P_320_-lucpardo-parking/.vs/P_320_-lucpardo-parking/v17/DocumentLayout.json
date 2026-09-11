@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\2\u00E8me ann\u00E9e\\1er trimestre\\I320-ACD\\projet\\I320-Projet\\Code\\P_320_-lucpardo-parking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3DFBC164-C74C-4EAC-AAC5-527D3C03B459}|P_320_-lucpardo-parking.csproj|d:\\2\u00E8me ann\u00E9e\\1er trimestre\\i320-acd\\projet\\i320-projet\\code\\p_320_-lucpardo-parking\\parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DFBC164-C74C-4EAC-AAC5-527D3C03B459}|P_320_-lucpardo-parking.csproj|solutionrelative:parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DFBC164-C74C-4EAC-AAC5-527D3C03B459}|P_320_-lucpardo-parking.csproj|d:\\2\u00E8me ann\u00E9e\\1er trimestre\\i320-acd\\projet\\i320-projet\\code\\p_320_-lucpardo-parking\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DFBC164-C74C-4EAC-AAC5-527D3C03B459}|P_320_-lucpardo-parking.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Parking.cs",
+              "DocumentMoniker": "D:\\2\u00E8me ann\u00E9e\\1er trimestre\\I320-ACD\\projet\\I320-Projet\\Code\\P_320_-lucpardo-parking\\Parking.cs",
+              "RelativeDocumentMoniker": "Parking.cs",
+              "ToolTip": "D:\\2\u00E8me ann\u00E9e\\1er trimestre\\I320-ACD\\projet\\I320-Projet\\Code\\P_320_-lucpardo-parking\\Parking.cs",
+              "RelativeToolTip": "Parking.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-11T06:18:28.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2\u00E8me ann\u00E9e\\1er trimestre\\I320-ACD\\projet\\I320-Projet\\Code\\P_320_-lucpardo-parking\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\2\u00E8me ann\u00E9e\\1er trimestre\\I320-ACD\\projet\\I320-Projet\\Code\\P_320_-lucpardo-parking\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAADUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-11T06:13:37.092Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
