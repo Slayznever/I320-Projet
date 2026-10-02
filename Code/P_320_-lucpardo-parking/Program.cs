@@ -17,7 +17,7 @@ namespace P_320__lucpardo_parking
 
                 ShowMenu();
 
-                string choix = Console.ReadLine();
+                string choix = Console.ReadLine() ?? "";
 
                 Console.Clear();
 
@@ -25,48 +25,44 @@ namespace P_320__lucpardo_parking
                 {
                     case "1":
                         Console.WriteLine(
-                            "\n========== Entrée d'un véhicule ==========\n"
-                        );
+                            "\n========== Entrée d'un véhicule ==========\n");
 
                         parking.EntrerVoiture();
                         break;
 
                     case "2":
                         Console.WriteLine(
-                            "\n========== Sortie d'un véhicule ==========\n"
-                        );
+                            "\n========== Sortie d'un véhicule ==========\n");
 
                         parking.SortirVoiture();
                         break;
 
                     case "3":
                         Console.WriteLine(
-                            "\n========== État du parking ==========\n"
-                        );
+                            "\n========== État du parking ==========\n");
 
                         parking.Status();
                         break;
 
                     case "4":
                         Console.WriteLine(
-                            "\n========== Rechercher un véhicule ==========\n"
-                        );
+                            "\n========== Rechercher un véhicule ==========\n");
 
                         parking.RechercherVoiture();
                         break;
 
                     case "5":
                         Console.WriteLine(
-                            "\n========== Statistiques du jour ==========\n"
-                        );
+                            "\n========== Statistiques du jour ==========\n");
 
+                        parking.StatistiquesDuJour();
                         break;
 
                     case "6":
                         Console.WriteLine(
-                            "\n========== Historique des transactions ==========\n"
-                        );
+                            "\n========== Historique des transactions ==========\n");
 
+                        parking.HistoriqueTickets();
                         break;
 
                     case "0":
@@ -81,8 +77,7 @@ namespace P_320__lucpardo_parking
                 if (continuer)
                 {
                     Console.WriteLine(
-                        "\nAppuyez sur une touche pour revenir au menu..."
-                    );
+                        "\nAppuyez sur une touche pour revenir au menu...");
 
                     Console.ReadKey();
                 }

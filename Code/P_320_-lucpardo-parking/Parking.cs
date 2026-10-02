@@ -1,13 +1,17 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace P_320__lucpardo_parking
 {
     internal class Parking
     {
-        const int PLACETOT = 20;
+        private const int PLACETOT = 20;
 
         private Voiture[] _places = new Voiture[PLACETOT];
+        private Ticket[] _tickets = new Ticket[PLACETOT];
+
+        private List<Ticket> _historique = new List<Ticket>();
 
         public Parking()
         {
@@ -33,32 +37,36 @@ namespace P_320__lucpardo_parking
                 return;
             }
 
-            Console.Write("Veuillez entrer votre canton (ex. Vaud = VD) : ");
-            canton = Console.ReadLine();
+            Console.Write(
+                "Veuillez entrer votre canton (ex. Vaud = VD) : ");
 
-            while (string.IsNullOrWhiteSpace(canton) || canton.Length != 2)
+            canton = Console.ReadLine() ?? "";
+
+            while (string.IsNullOrWhiteSpace(canton) ||
+                   canton.Trim().Length != 2)
             {
                 Console.WriteLine("Valeur invalide.");
-                Console.Write("Veuillez entrer votre canton (ex. Vaud = VD) : ");
-                canton = Console.ReadLine();
+
+                Console.Write(
+                    "Veuillez entrer votre canton (ex. Vaud = VD) : ");
+
+                canton = Console.ReadLine() ?? "";
             }
 
-            canton = canton.ToUpper();
+            canton = canton.Trim().ToUpperInvariant();
 
             Console.Write("Veuillez entrer votre matricule (6 chiffres) : ");
-            string matriculestring = Console.ReadLine();
 
-            bool matriculeInt = int.TryParse(matriculestring, out int nombre);
+            string matriculestring = Console.ReadLine() ?? "";
 
-            while (matriculestring == null ||
-                   matriculestring.Length != 6 ||
-                   !matriculeInt)
+            while (matriculestring.Length != 6 ||
+                   !int.TryParse(matriculestring, out _))
             {
                 Console.WriteLine("Valeur invalide.");
+
                 Console.Write("Veuillez entrer votre matricule (6 chiffres) : ");
 
-                matriculestring = Console.ReadLine();
-                matriculeInt = int.TryParse(matriculestring, out nombre);
+                matriculestring = Console.ReadLine() ?? "";
             }
 
             string plaque = $"{canton}-{matriculestring}";
@@ -72,10 +80,8 @@ namespace P_320__lucpardo_parking
                     return;
                 }
             }
-
             Console.WriteLine($"\nBonjour {plaque}");
             Console.WriteLine("Voici les places libres :");
-
             for (int i = 0; i < PLACETOT; i++)
             {
                 if (_places[i] == null)
@@ -86,12 +92,13 @@ namespace P_320__lucpardo_parking
 
             Console.Write("\nVeuillez choisir votre place (1-20) : ");
 
-            bool choixValide = int.TryParse(Console.ReadLine(), out int choix);
+            bool choixValide =
+                int.TryParse(Console.ReadLine(), out int choix);
 
             while (!choixValide ||
                    choix < 1 ||
                    choix > PLACETOT ||
-                   (choixValide && _places[choix - 1] != null))
+                   _places[choix - 1] != null)
             {
                 if (choixValide &&
                     choix >= 1 &&
@@ -106,6 +113,7 @@ namespace P_320__lucpardo_parking
                 }
 
                 Console.Write("Veuillez choisir une place libre (1-20) : ");
+
                 choixValide = int.TryParse(Console.ReadLine(), out choix);
             }
 
@@ -113,16 +121,21 @@ namespace P_320__lucpardo_parking
 
             _places[choix - 1] = voiture;
 
-            Console.WriteLine(
-                $"\nLa voiture {plaque} est garée à la place {choix}."
-            );
+            Ticket ticket = new Ticket(plaque, choix);
 
+            _tickets[choix - 1] = ticket;
+
+            Console.WriteLine(
+                $"\nLa voiture {plaque} est garée à la place {choix}.");
+
+            ticket.Afficher();
         }
 
         public void SortirVoiture()
         {
             Console.Write("Entrez la plaque ou le numéro de place : ");
-            string recherche = Console.ReadLine();
+
+            string recherche = Console.ReadLine() ?? "";
 
             Voiture voiture = null;
             int numeroPlace = -1;
@@ -144,7 +157,7 @@ namespace P_320__lucpardo_parking
                 {
                     if (_places[i] != null &&
                         _places[i].GetMatricule().Equals(
-                            recherche,
+                            recherche.Trim(),
                             StringComparison.OrdinalIgnoreCase))
                     {
                         voiture = _places[i];
@@ -165,19 +178,28 @@ namespace P_320__lucpardo_parking
             Console.WriteLine($"Place : {numeroPlace}");
             Console.WriteLine("============================");
 
-            Console.Write("\nVoulez-vous réellement sortir ? (O/N) : ");
-            string confirmation = Console.ReadLine();
+            Console.Write(
+                "\nVoulez-vous réellement sortir ? (O/N) : ");
 
-            if (string.Equals(
-                confirmation,
-                "O",
-                StringComparison.OrdinalIgnoreCase))
+            string confirmation = Console.ReadLine() ?? "";
+
+            if (string.Equals(confirmation.Trim(),"O",StringComparison.OrdinalIgnoreCase))
             {
-                _places[numeroPlace - 1] = null;
+                int index = numeroPlace - 1;
+
+                Ticket ticket = _tickets[index];
+
+                ticket.EnregistrerSortie();
+
+                ticket.Afficher();
+
+                _historique.Add(ticket);
+
+                _tickets[index] = null;
+                _places[index] = null;
 
                 Console.WriteLine(
-                    $"La place {numeroPlace} est maintenant libre."
-                );
+                    $"\nLa place {numeroPlace} est maintenant libre.");
             }
             else
             {
@@ -210,7 +232,8 @@ namespace P_320__lucpardo_parking
         public void RechercherVoiture()
         {
             Console.Write("Entrez la plaque ou le numéro de place : ");
-            string recherche = Console.ReadLine();
+
+            string recherche = Console.ReadLine() ?? "";
 
             Voiture voiture = null;
             int numeroPlace = -1;
@@ -229,7 +252,7 @@ namespace P_320__lucpardo_parking
                 {
                     if (_places[i] != null &&
                         _places[i].GetMatricule().Equals(
-                            recherche,
+                            recherche.Trim(),
                             StringComparison.OrdinalIgnoreCase))
                     {
                         voiture = _places[i];
@@ -246,9 +269,30 @@ namespace P_320__lucpardo_parking
             }
 
             Console.WriteLine("\n========== VÉHICULE TROUVÉ ==========");
-            Console.WriteLine($"Immatriculation : {voiture.GetMatricule()}");
+            Console.WriteLine(
+                $"Immatriculation : {voiture.GetMatricule()}");
+
             Console.WriteLine($"N° place        : {numeroPlace}");
+
             Console.WriteLine("=====================================");
+        }
+
+        public void HistoriqueTickets()
+        {
+            if (_historique.Count == 0)
+            {
+                Console.WriteLine("Aucun ticket terminé pour le moment.");
+                return;
+            }
+
+            foreach (Ticket ticket in _historique)
+            {
+                ticket.Afficher();
+            }
+        }
+
+        public void StatistiquesDuJour()
+        {
         }
     }
 }
