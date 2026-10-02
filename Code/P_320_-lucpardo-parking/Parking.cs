@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace P_320__lucpardo_parking
 {
@@ -42,14 +43,10 @@ namespace P_320__lucpardo_parking
 
             canton = Console.ReadLine() ?? "";
 
-            while (string.IsNullOrWhiteSpace(canton) ||
-                   canton.Trim().Length != 2)
+            while (string.IsNullOrWhiteSpace(canton) || canton.Trim().Length != 2 || !canton.Trim().All(char.IsLetter))
             {
                 Console.WriteLine("Valeur invalide.");
-
-                Console.Write(
-                    "Veuillez entrer votre canton (ex. Vaud = VD) : ");
-
+                Console.Write("Veuillez entrer votre canton (ex. Vaud = VD) : ");
                 canton = Console.ReadLine() ?? "";
             }
 
@@ -57,19 +54,18 @@ namespace P_320__lucpardo_parking
 
             Console.Write("Veuillez entrer votre matricule (6 chiffres) : ");
 
-            string matriculestring = Console.ReadLine() ?? "";
+string matriculestring = (Console.ReadLine() ?? "").Trim();
 
-            while (matriculestring.Length != 6 ||
-                   !int.TryParse(matriculestring, out _))
-            {
-                Console.WriteLine("Valeur invalide.");
+while (matriculestring.Length != 6
+    || !matriculestring.All(char.IsDigit))
+{
+    Console.WriteLine("Valeur invalide.");
+    Console.Write("Veuillez entrer votre matricule (6 chiffres) : ");
 
-                Console.Write("Veuillez entrer votre matricule (6 chiffres) : ");
+    matriculestring = (Console.ReadLine() ?? "").Trim();
+}
 
-                matriculestring = Console.ReadLine() ?? "";
-            }
-
-            string plaque = $"{canton}-{matriculestring}";
+string plaque = $"{canton}-{matriculestring}";
 
             for (int i = 0; i < PLACETOT; i++)
             {
@@ -95,15 +91,9 @@ namespace P_320__lucpardo_parking
             bool choixValide =
                 int.TryParse(Console.ReadLine(), out int choix);
 
-            while (!choixValide ||
-                   choix < 1 ||
-                   choix > PLACETOT ||
-                   _places[choix - 1] != null)
+            while (!choixValide || choix < 1 || choix > PLACETOT || _places[choix - 1] != null)
             {
-                if (choixValide &&
-                    choix >= 1 &&
-                    choix <= PLACETOT &&
-                    _places[choix - 1] != null)
+                if (choixValide && choix >= 1 && choix <= PLACETOT && _places[choix - 1] != null)
                 {
                     Console.WriteLine("Cette place est déjà occupée !");
                 }
@@ -293,6 +283,7 @@ namespace P_320__lucpardo_parking
 
         public void StatistiquesDuJour()
         {
+
         }
     }
 }

@@ -10,7 +10,7 @@ namespace P_320__lucpardo_parking
         private DateTime _arrivee;
         private DateTime? _sortie;
 
-        private const decimal TARIF_HORAIRE = 2.50m;
+        private const decimal TARIF_HORAIRE = 30;
 
         public Ticket(string plaque, int numeroPlace)
         {
@@ -40,8 +40,7 @@ namespace P_320__lucpardo_parking
             else
             {
                 TimeSpan duree = _sortie.Value - _arrivee;
-                decimal prix = (decimal)duree.TotalHours
-                               * TARIF_HORAIRE;
+                decimal prix = (decimal)duree.TotalHours * TARIF_HORAIRE;
 
                 Console.WriteLine($"Sortie  : {_sortie.Value:dd/MM/yyyy HH:mm:ss}");
                 Console.WriteLine($"Durée   : {(int)duree.TotalHours}h " + $"{duree.Minutes}min");
@@ -55,12 +54,12 @@ namespace P_320__lucpardo_parking
         {
             if (_sortie == null)
             {
-                return 0m;
+                return 0;
             }
 
             TimeSpan duree = _sortie.Value - _arrivee;
 
-            return (decimal)duree.TotalHours * 2.50m;
+            return (decimal)duree.TotalHours * TARIF_HORAIRE;
         }
     }
 }
