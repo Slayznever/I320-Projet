@@ -1,5 +1,4 @@
-﻿
-namespace P_320__lucpardo_parking
+﻿namespace P_320__lucpardo_parking
 {
     internal class Voiture
     {

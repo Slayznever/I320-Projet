@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace P_320__lucpardo_parking
 {
@@ -25,31 +24,36 @@ namespace P_320__lucpardo_parking
             _sortie = DateTime.Now;
         }
 
-        public void Afficher()
+        public string GetPlaque()
         {
-            Console.WriteLine("\n========== TICKET DE PARKING ==========");
-            Console.WriteLine($"Plaque  : {_plaque}");
-            Console.WriteLine($"Place   : {_numeroPlace}");
-            Console.WriteLine($"Arrivée : {_arrivee:dd/MM/yyyy HH:mm:ss}");
+            return _plaque;
+        }
 
+        public int GetNumeroPlace()
+        {
+            return _numeroPlace;
+        }
+
+        public DateTime GetArrivee()
+        {
+            return _arrivee;
+        }
+
+        public DateTime? GetSortie()
+        {
+            return _sortie;
+        }
+
+        public TimeSpan GetDuree()
+        {
             if (_sortie == null)
             {
-                Console.WriteLine("Sortie  : En cours de stationnement");
-                Console.WriteLine("Prix    : Non disponible");
-            }
-            else
-            {
-                TimeSpan duree = _sortie.Value - _arrivee;
-                decimal prix = (decimal)duree.TotalHours * TARIF_HORAIRE;
-
-                Console.WriteLine($"Sortie  : {_sortie.Value:dd/MM/yyyy HH:mm:ss}");
-                Console.WriteLine($"Durée   : {(int)duree.TotalHours}h " + $"{duree.Minutes}min");
-                Console.WriteLine($"Tarif   : {TARIF_HORAIRE:F2} CHF/heure");
-                Console.WriteLine($"À payer : {prix:F2} CHF");
+                return DateTime.Now - _arrivee;
             }
 
-            Console.WriteLine("========================================");
+            return _sortie.Value - _arrivee;
         }
+
         public decimal CalculerPrix()
         {
             if (_sortie == null)
@@ -60,6 +64,32 @@ namespace P_320__lucpardo_parking
             TimeSpan duree = _sortie.Value - _arrivee;
 
             return (decimal)duree.TotalHours * TARIF_HORAIRE;
+        }
+
+        public void Afficher()
+        {
+            Console.WriteLine("\n========== TICKET DE PARKING ==========");
+            Console.WriteLine($"Plaque  : {_plaque}");
+            Console.WriteLine($"Place   : {_numeroPlace}");
+            Console.WriteLine(
+                $"Arrivée : {_arrivee:dd/MM/yyyy HH:mm:ss}");
+
+            if (_sortie == null)
+            {
+                Console.WriteLine("Sortie  : En cours de stationnement");
+                Console.WriteLine("Prix    : Non disponible");
+            }
+            else
+            {
+                TimeSpan duree = _sortie.Value - _arrivee;
+                decimal prix = CalculerPrix();
+                Console.WriteLine($"Sortie  : {_sortie.Value:dd/MM/yyyy HH:mm:ss}");
+                Console.WriteLine($"Durée   : {(int)duree.TotalHours}h {duree.Minutes}min");
+                Console.WriteLine($"Tarif   : {TARIF_HORAIRE:F2} CHF/heure");
+                Console.WriteLine($"À payer : {prix:F2} CHF");
+            }
+
+            Console.WriteLine("========================================");
         }
     }
 }
